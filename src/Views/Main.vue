@@ -94,22 +94,41 @@ export default {
     }
 
     const registration = () => {
-      store.dispatch('registrationUser', {
-        email: userEmail.value,
-        login: userName.value,
-        password: userPassword.value,
-        repeatPassword: userRepeatPassword.value
-      })
-        .then(response => {
-          store.commit('SetNotification', {
-            header: 'Успешно',
-            body: response.message,
-            flag: true,
-            status: 'success',
-            duration: 5000
-          })
-          resetUser()
+      const formRegistration = document.querySelector('.Main-Registration')
+      let flag = false
+      Array.from(formRegistration.children).forEach(item => {
+        Array.from(item.children).forEach(element => {
+          if (element.classList.contains('InputComponents-Input__Error')) {
+            flag = true
+          }
         })
+      })
+      if (flag) {
+        store.commit('SetNotification', {
+          header: 'Ошибка ввода данных',
+          body: 'Не все поля ввода заполнены корректно',
+          flag: true,
+          status: 'error',
+          duration: 5000
+        })
+      } else {
+        store.dispatch('registrationUser', {
+          email: userEmail.value,
+          login: userName.value,
+          password: userPassword.value,
+          repeatPassword: userRepeatPassword.value
+        })
+          .then(response => {
+            store.commit('SetNotification', {
+              header: 'Успешно',
+              body: response.message,
+              flag: true,
+              status: 'success',
+              duration: 5000
+            })
+            resetUser()
+          })
+      }
     }
 
     return {
