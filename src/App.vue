@@ -19,6 +19,7 @@ export default {
 
 <style lang="stylus">
 @import '~@/Styles/global.styl'
+@import "~@/Styles/variable.styl"
 #app
   height 100vh
   display flex

@@ -1,7 +1,7 @@
 const state = {
   NotificationHeader: '',
   NotificationBody: '',
-  NotificationFlag: true,
+  NotificationFlag: false,
   NotificationStatus: '',
   NotificationDuration: 0
 }

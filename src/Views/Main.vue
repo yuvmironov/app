@@ -10,18 +10,55 @@
       <span @click="selectForm('login')">Логин</span>
       <span @click="selectForm('registration')">Регистрация</span>
     </div>
-    <div v-if="formFlag === 'login'">
-      Форма логина
+    <div class="Main-LoginForm" v-if="formFlag === 'login'">
+      <input-component
+        class="Main-Input"
+        type="email"
+        v-model="userEmail"
+        id="email"
+        label="E-mail"
+      />
+      <input-component
+        class="Main-Input"
+        type="password"
+        v-model="userPassword"
+        id="password"
+        label="Пароль"
+      />
+      <div class="Main-LoginButtons">
+        <button>Логин</button>
+        <button @click="resetUser">Очистить форму</button>
+      </div>
     </div>
     <div class="Main-Registration" v-if="formFlag === 'registration'">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" v-model="userEmail">
-      <label for="login">Имя пользователя</label>
-      <input type="text" id="login" v-model="userName">
-      <label for="userPassword">Пароль</label>
-      <input type="password" id="userPassword" v-model="userPassword">
-      <label for="userRepeatPassword">Повторение пароля</label>
-      <input type="password" id="userRepeatPassword" v-model="userRepeatPassword">
+      <input-component
+        class="Main-Input"
+        type="email"
+        v-model="userEmail"
+        id="email"
+        label="E-mail"
+      />
+      <input-component
+        class="Main-Input"
+        type="text"
+        v-model="userName"
+        id="name"
+        label="Ваше имя"
+      />
+      <input-component
+        class="Main-Input"
+        type="password"
+        v-model="userPassword"
+        id="password"
+        label="Пароль"
+      />
+      <input-component
+        class="Main-Input"
+        type="password"
+        v-model="userRepeatPassword"
+        id="repeatPassword"
+        label="Повторение пароля"
+      />
       <div class="Main-RegistrationButtons">
         <button @click="registration">Регистрация</button>
         <button @click="resetUser">Очистить форму</button>
@@ -105,7 +142,9 @@ export default {
   justify-content center
   align-items center
   flex-direction column
-  &-Registration
-    display flex
-    flex-direction column
+  &-Registration, &-LoginForm
+    padding 15px
+  &-Input
+    &:not(:last-child)
+      margin-bottom 10px
 </style>
