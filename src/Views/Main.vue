@@ -11,14 +11,14 @@
       <span @click="selectForm('registration')">Регистрация</span>
     </div>
     <div class="Main-LoginForm" v-if="formFlag === 'login'">
-      <input-component
+      <yuv-input
         class="Main-Input"
         type="email"
         v-model="userEmail"
         id="email"
         label="E-mail"
       />
-      <input-component
+      <yuv-input
         class="Main-Input"
         type="password"
         v-model="userPassword"
@@ -31,28 +31,28 @@
       </div>
     </div>
     <div class="Main-Registration" v-if="formFlag === 'registration'">
-      <input-component
+      <yuv-input
         class="Main-Input"
         type="email"
         v-model="userEmail"
         id="email"
         label="E-mail"
       />
-      <input-component
+      <yuv-input
         class="Main-Input"
         type="text"
         v-model="userName"
         id="name"
         label="Ваше имя"
       />
-      <input-component
+      <yuv-input
         class="Main-Input"
         type="password"
         v-model="userPassword"
         id="password"
         label="Пароль"
       />
-      <input-component
+      <yuv-input
         class="Main-Input"
         type="password"
         v-model="userRepeatPassword"

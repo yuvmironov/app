@@ -2,12 +2,20 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './Router'
 import store from './Store'
-import Notification from '@/Components/Notification'
-import InputComponent from '@/Components/InputComponent'
+import 'yuv-components/src/Styles/Variable.styl'
+import 'yuv-components/src/Styles/ResetStyle.styl'
+import Components from 'yuv-components/src/components'
 
-createApp(App)
+import Notification from '@/Components/Notification'
+
+const app = createApp(App)
+
+for (const key in Components) {
+  app.component(key, Components[key])
+}
+
+app
   .use(store)
   .use(router)
   .component('Notification', Notification)
-  .component('InputComponent', InputComponent)
   .mount('#app')
