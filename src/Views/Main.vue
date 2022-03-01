@@ -7,8 +7,14 @@
       {{ userRepeatPassword }}
     </div>
     <div class="Main-Buttons">
-      <span @click="selectForm('login')">Логин</span>
-      <span @click="selectForm('registration')">Регистрация</span>
+      <span @click="selectForm('login')">
+        <span class="icon icon-user-check"></span>
+        Логин
+      </span>
+      <span @click="selectForm('registration')">
+        <span class="icon icon-user-plus"></span>
+        Регистрация
+      </span>
     </div>
     <div class="Main-LoginForm" v-if="formFlag === 'login'">
       <yuv-input
