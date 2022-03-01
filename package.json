@@ -32,6 +32,6 @@
     "style-resources-loader": "^1.4.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "yuv-components": "^0.0.2"
+    "yuv-components": "^0.0.3"
   }
 }

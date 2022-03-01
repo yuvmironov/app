@@ -60,7 +60,9 @@
         label="Повторение пароля"
       />
       <div class="Main-RegistrationButtons">
-        <button @click="registration">Регистрация</button>
+        <button @click="registration">
+          Регистрация
+        </button>
         <button @click="resetUser">Очистить форму</button>
       </div>
     </div>
