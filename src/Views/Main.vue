@@ -122,14 +122,12 @@ export default {
       const formRegistration = document.querySelector('.Main-Registration')
       let flag = false
       Array.from(formRegistration.children).forEach(item => {
-        console.log(item.children)
         Array.from(item.children).forEach(element => {
           if (element.classList.contains('YuvInput-Input__Error')) {
             flag = true
           }
         })
       })
-      console.log('flag', flag)
       if (flag) {
         store.commit('SetNotification', {
           header: 'Ошибка ввода данных',
