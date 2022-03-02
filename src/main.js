@@ -4,10 +4,10 @@ import router from './Router'
 import store from './Store'
 import 'yuv-components/src/Styles/Variable.styl'
 import 'yuv-components/src/Styles/ResetStyle.styl'
-import 'yuv-components/src/Styles/yuv-font.styl'
+import 'yuv-components/src/Styles/Fonts.styl'
 import Components from 'yuv-components/src/components'
 
-import Notification from '@/Components/Notification'
+// import Notification from '@/Components/Notification'
 
 const app = createApp(App)
 

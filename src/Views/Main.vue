@@ -32,8 +32,17 @@
         label="Пароль"
       />
       <div class="Main-LoginButtons">
-        <button>Логин</button>
-        <button @click="resetUser">Очистить форму</button>
+        <yuv-button
+          name="Войти"
+          left-icon="user-check"
+          type="base"
+        />
+        <yuv-button
+          name="Очистить"
+          left-icon="trash"
+          type="base"
+          :fun="resetUser"
+        />
       </div>
     </div>
     <div class="Main-Registration" v-if="formFlag === 'registration'">
@@ -66,10 +75,18 @@
         label="Повторение пароля"
       />
       <div class="Main-RegistrationButtons">
-        <button @click="registration">
-          Регистрация
-        </button>
-        <button @click="resetUser">Очистить форму</button>
+        <yuv-button
+          name="Регистрация"
+          left-icon="user-plus"
+          type="base"
+          :fun="registration"
+        />
+        <yuv-button
+          name="Очистить"
+          left-icon="trash"
+          type="base"
+          :fun="resetUser"
+        />
       </div>
     </div>
   </div>
@@ -105,12 +122,14 @@ export default {
       const formRegistration = document.querySelector('.Main-Registration')
       let flag = false
       Array.from(formRegistration.children).forEach(item => {
+        console.log(item.children)
         Array.from(item.children).forEach(element => {
-          if (element.classList.contains('InputComponents-Input__Error')) {
+          if (element.classList.contains('YuvInput-Input__Error')) {
             flag = true
           }
         })
       })
+      console.log('flag', flag)
       if (flag) {
         store.commit('SetNotification', {
           header: 'Ошибка ввода данных',
@@ -171,6 +190,11 @@ export default {
   flex-direction column
   &-Registration, &-LoginForm
     padding 15px
+  &-Registration, &-LoginForm
+    width 300px
+  &-RegistrationButtons, &-LoginButtons
+    display flex
+    justify-content space-between
   &-Input
     &:not(:last-child)
       margin-bottom 10px

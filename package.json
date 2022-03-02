@@ -12,7 +12,8 @@
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vuex": "^4.0.0-0",
+    "yuv-components": "^0.0.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -31,7 +32,6 @@
     "eslint-plugin-vue": "^7.0.0",
     "style-resources-loader": "^1.4.1",
     "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
-    "yuv-components": "^0.0.4"
+    "stylus-loader": "^3.0.2"
   }
 }

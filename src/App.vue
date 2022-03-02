@@ -2,7 +2,7 @@
   <header-component class="Header"/>
   <router-view class="Main"/>
   <footer-component class="Footer"/>
-  <notification/>
+  <yuv-notification/>
 </template>
 
 <script>

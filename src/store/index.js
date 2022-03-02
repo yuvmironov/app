@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import User from '@/Store/User'
-import Notification from '@/Store/Notificatioin'
+import Notification from 'yuv-components/src/store/Notification'
 
 export default createStore({
   state: {
