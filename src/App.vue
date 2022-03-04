@@ -1,21 +1,9 @@
 <template>
-  <header-component class="Header"/>
+  <router-view name="header"/>
   <router-view class="Main"/>
-  <footer-component class="Footer"/>
+  <router-view name="footer"/>
   <yuv-notification/>
 </template>
-
-<script>
-import HeaderComponent from '@/Components/HeaderComponent'
-import FooterComponent from '@/Components/FooterComponent'
-
-export default {
-  components: {
-    HeaderComponent,
-    FooterComponent
-  }
-}
-</script>
 
 <style lang="stylus">
 #app

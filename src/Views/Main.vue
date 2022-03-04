@@ -36,6 +36,7 @@
           name="Войти"
           left-icon="user-check"
           type="base"
+          :fun="loginUser"
         />
         <yuv-button
           name="Очистить"
@@ -95,11 +96,13 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'Main',
   setup () {
     const store = useStore()
+    const router = useRouter()
 
     const formFlag = ref('login')
     const selectForm = (data) => {
@@ -152,8 +155,19 @@ export default {
               duration: 5000
             })
             resetUser()
+            formFlag.value = 'login'
           })
       }
+    }
+
+    const loginUser = () => {
+      store.dispatch('apiLoginUser', {
+        email: userEmail.value,
+        password: userPassword.value
+      })
+        .then(() => {
+          router.push('/lk')
+        })
     }
 
     return {
@@ -163,6 +177,7 @@ export default {
       userName,
       userPassword,
       userRepeatPassword,
+      loginUser,
       resetUser,
 
       registration

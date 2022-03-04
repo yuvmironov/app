@@ -19,6 +19,16 @@ const actions = {
       .catch((err) => {
         console.log(err.response)
       })
+  },
+  apiLoginUser: (context, data) => {
+    return axios({
+      method: 'POST',
+      url: '/api/login',
+      data: data
+    })
+      .then(() => {
+        return true
+      })
   }
 }
 
