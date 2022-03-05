@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import User from '@/Store/User'
 import Notification from 'yuv-components/src/store/Notification'
+import List from '@/Store/List'
 
 export default createStore({
   state: {
@@ -16,6 +17,7 @@ export default createStore({
   },
   modules: {
     User,
-    Notification
+    Notification,
+    List
   }
 })

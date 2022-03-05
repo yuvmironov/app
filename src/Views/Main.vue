@@ -165,7 +165,8 @@ export default {
         email: userEmail.value,
         password: userPassword.value
       })
-        .then(() => {
+        .then(result => {
+          store.commit('SetUserName', result.data.user)
           router.push('/lk')
         })
     }

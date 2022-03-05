@@ -1,10 +1,18 @@
 import axios from 'axios'
 
-const state = {}
+const state = {
+  userName: ''
+}
 
-const getters = {}
+const getters = {
+  GetUserName: state => state.userName
+}
 
-const mutations = {}
+const mutations = {
+  SetUserName: (state, data) => {
+    state.userName = data
+  }
+}
 
 const actions = {
   registrationUser: (context, data) => {
@@ -26,8 +34,8 @@ const actions = {
       url: '/api/login',
       data: data
     })
-      .then(() => {
-        return true
+      .then(response => {
+        return response
       })
   }
 }
