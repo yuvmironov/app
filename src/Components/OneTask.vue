@@ -46,11 +46,9 @@ export default {
   setup (props, { emit }) {
     const status = computed(() => {
       if (props.task.finish.val) {
-        console.log('finish')
         return 'Finished'
       }
       if (new Date(props.task.dateFinish.val) < new Date()) {
-        console.log('time')
         return 'Time'
       } else {
         return 'InTime'

@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const actions = {
   apiGetList: (context, data) => {
-    console.log(data)
     return axios({
       method: 'GET',
       url: '/api/getTodoList',
@@ -10,6 +9,16 @@ const actions = {
     })
       .then(response => {
         return response.data
+      })
+  },
+  apiAddTask: (context, data) => {
+    return axios({
+      method: 'POST',
+      url: '/api/createTask',
+      data: data
+    })
+      .then(response => {
+        return response.data.payload[0]
       })
   },
   apiEditTask: (context, data) => {
