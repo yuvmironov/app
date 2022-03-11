@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const state = {
-  userName: ''
+  userName: window.sessionStorage.getItem('userName') || ''
 }
 
 const getters = {
@@ -35,6 +35,8 @@ const actions = {
       data: data
     })
       .then(response => {
+        console.log(response)
+        window.sessionStorage.setItem('userName', response.data.user)
         return response
       })
   }

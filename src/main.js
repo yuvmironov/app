@@ -6,9 +6,7 @@ import 'yuv-components/src/Styles/Variable.styl'
 import 'yuv-components/src/Styles/ResetStyle.styl'
 import 'yuv-components/src/Styles/Fonts.styl'
 import Components from 'yuv-components/src/components'
-
-// import Notification from '@/Components/Notification'
-
+import FormCreateTask from '@/Components/FormCreateTask'
 const app = createApp(App)
 
 for (const key in Components) {
@@ -18,5 +16,5 @@ for (const key in Components) {
 app
   .use(store)
   .use(router)
-  .component('Notification', Notification)
+  .component('FormCreateTask', FormCreateTask)
   .mount('#app')

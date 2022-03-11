@@ -11,6 +11,17 @@ const actions = {
       .then(response => {
         return response.data
       })
+  },
+  apiEditTask: (context, data) => {
+    console.log(data)
+    return axios({
+      method: 'POST',
+      url: '/api/editTask',
+      data: data
+    })
+      .then(response => {
+        return response.data
+      })
   }
 }
 
