@@ -42,9 +42,13 @@ export default {
     const editTaskForm = ref(null)
     const store = useStore()
     onMounted(() => {
+      store.commit('SetGloaderFlag', true)
       store.dispatch('apiGetList', { listName: store.getters.GetUserName })
         .then(response => {
           taskLists.value = JSON.parse(JSON.stringify(response.payload))
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
         })
     })
 
@@ -61,7 +65,7 @@ export default {
       console.log('edit', id)
       for (let i = 0; i < taskLists.value.length; i++) {
         if (taskLists.value[i]._id === id) {
-          editData.value = taskLists.value[i]
+          editData.value = JSON.parse(JSON.stringify(taskLists.value[i]))
           break
         }
       }
@@ -70,13 +74,37 @@ export default {
     const saveAfterEdit = data => {
       data.dateCreate.val = new Date(data.dateCreate.val)
       data.dateFinish.val = new Date(data.dateFinish.val)
-      console.log(data)
+      store.commit('SetGloaderFlag', true)
       store.dispatch('apiEditTask', {
         listName: store.getters.GetUserName,
         task: data
       })
         .then(response => {
-          console.log(response)
+          store.commit('SetNotification', {
+            header: 'Успех',
+            body: response.payload,
+            flag: true,
+            status: 'success',
+            duration: 5000
+          })
+          for (let i = 0; i < taskLists.value.length; i++) {
+            if (taskLists.value[i]._id === data._id) {
+              taskLists.value[i] = data
+            }
+          }
+          editTaskForm.value.onClose()
+        })
+        .catch(() => {
+          store.commit('SetNotification', {
+            header: 'Ошибка',
+            body: 'Не удалось обновить задачу. Попробуйте позже',
+            flag: true,
+            status: 'error',
+            duration: 5000
+          })
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
         })
     }
     const archivedTask = id => {
@@ -106,6 +134,7 @@ export default {
 .Lk
   height 100vh
   display flex
+  flex-direction column
   justify-content flex-start
   align-items flex-start
   &-Tasks

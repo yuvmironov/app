@@ -140,6 +140,7 @@ export default {
           duration: 5000
         })
       } else {
+        store.commit('SetGloaderFlag', true)
         store.dispatch('registrationUser', {
           email: userEmail.value,
           login: userName.value,
@@ -157,10 +158,14 @@ export default {
             resetUser()
             formFlag.value = 'login'
           })
+          .finally(() => {
+            store.commit('SetGloaderFlag', false)
+          })
       }
     }
 
     const loginUser = () => {
+      store.commit('SetGloaderFlag', true)
       store.dispatch('apiLoginUser', {
         email: userEmail.value,
         password: userPassword.value
@@ -168,6 +173,9 @@ export default {
         .then(result => {
           store.commit('SetUserName', result.data.user)
           router.push('/lk')
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
         })
     }
 

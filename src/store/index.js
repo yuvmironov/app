@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import User from '@/Store/User'
 import Notification from 'yuv-components/src/store/Notification'
+import GlobalLoader from 'yuv-components/src/store/GlobalLoader'
 import List from '@/Store/List'
 
 export default createStore({
@@ -18,6 +19,7 @@ export default createStore({
   modules: {
     User,
     Notification,
+    GlobalLoader,
     List
   }
 })

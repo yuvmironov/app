@@ -3,6 +3,7 @@
   <router-view class="Main"/>
   <router-view name="footer"/>
   <yuv-notification/>
+  <yuv-global-loader/>
 </template>
 
 <style lang="stylus">
