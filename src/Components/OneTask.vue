@@ -1,5 +1,5 @@
 <template>
-  <div class="OneTask" :class="`OneTask__${status}`">
+  <div class="OneTask" :class="`OneTask__${status}`" v-if="!task.archive.val">
     <div class="OneTask-ActionsButtons">
       <p class="OneTask-Finished" v-if="task.finish.val">
         Завершена
@@ -9,7 +9,7 @@
       </p>
       <div>
         <span v-if="!task.finish.val" class="OneTask-ActionButton icon icon-edit" @click="editTask(task._id)"/>
-        <span class="OneTask-ActionButton icon icon-inbox" @click="archivedTask(task._id)"/>
+        <span v-if="!task.archive.val && task.finish.val" class="OneTask-ActionButton icon icon-inbox" @click="archivedTask(task._id)"/>
         <span v-if="!task.finish.val" class="OneTask-ActionButton icon icon-check" @click="finishedTask(task._id)"/>
       </div>
     </div>
