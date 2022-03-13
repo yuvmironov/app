@@ -11,6 +11,16 @@ const actions = {
         return response.data
       })
   },
+  apiGetArchiveList: (context, data) => {
+    return axios({
+      method: 'GET',
+      url: '/api/getArchiveTodoList',
+      params: data
+    })
+      .then(response => {
+        return response.data
+      })
+  },
   apiAddTask: (context, data) => {
     return axios({
       method: 'POST',

@@ -1,8 +1,11 @@
 <template>
-  <div class="OneTask" :class="`OneTask__${status}`" v-if="!task.archive.val">
+  <div class="OneTask" :class="`OneTask__${status}`">
     <div class="OneTask-ActionsButtons">
       <p class="OneTask-Finished" v-if="task.finish.val">
         Завершена
+      </p>
+      <p class="OneTask-Finished" v-if="task.archive.val">
+        Архивная
       </p>
       <p v-else>
         Активная
@@ -45,6 +48,9 @@ export default {
   },
   setup (props, { emit }) {
     const status = computed(() => {
+      if (props.task.archive.val) {
+        return 'Archive'
+      }
       if (props.task.finish.val) {
         return 'Finished'
       }

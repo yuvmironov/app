@@ -4,6 +4,14 @@
       <span class="icon icon-plus"/>
       <span>Новая задача</span>
     </div>
+    <div v-if="taskFlag === 'main'" class="Lk-NewTask" @click="getArchivedTask">
+      <span class="icon icon-inbox"/>
+      <span>Архивные задачи</span>
+    </div>
+    <div v-else class="Lk-NewTask" @click="getMainTask">
+      <span class="icon icon-inbox"/>
+      <span>Текущие задачи</span>
+    </div>
     <div class="Lk-Tasks">
       <one-task
         v-for="item in taskLists" :key="item._id"
@@ -40,8 +48,9 @@ export default {
   setup () {
     const createTaskForm = ref(null)
     const editTaskForm = ref(null)
+    const taskFlag = ref('main')
     const store = useStore()
-    onMounted(() => {
+    const getMainTask = () => {
       store.commit('SetGloaderFlag', true)
       store.dispatch('apiGetList', { listName: store.getters.GetUserName })
         .then(response => {
@@ -50,6 +59,10 @@ export default {
         .finally(() => {
           store.commit('SetGloaderFlag', false)
         })
+    }
+    onMounted(() => {
+      getMainTask()
+      taskFlag.value = 'main'
     })
 
     const taskLists = ref([])
@@ -231,9 +244,23 @@ export default {
         })
     }
 
+    const getArchivedTask = () => {
+      taskFlag.value = 'archive'
+      store.commit('SetGloaderFlag', true)
+      store.dispatch('apiGetArchiveList', { listName: store.getters.GetUserName })
+        .then(response => {
+          taskLists.value = JSON.parse(JSON.stringify(response.payload))
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
+        })
+    }
+
     return {
+      getMainTask,
       createTaskForm,
       editTaskForm,
+      taskFlag,
       taskLists,
       newTask,
       newTaskSave,
@@ -241,7 +268,8 @@ export default {
       saveAfterEdit,
       archivedTask,
       finishedTask,
-      editData
+      editData,
+      getArchivedTask
     }
   }
 }
