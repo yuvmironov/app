@@ -1,13 +1,13 @@
 <template>
   <div class="OneTask" :class="`OneTask__${status}`">
     <div class="OneTask-ActionsButtons">
-      <p class="OneTask-Finished" v-if="task.finish.val">
+      <p class="OneTask-Finished" v-if="task.finish.val && !task.archive.val">
         Завершена
       </p>
       <p class="OneTask-Finished" v-if="task.archive.val">
         Архивная
       </p>
-      <p v-else>
+      <p v-if="!task.archive.val && !task.finish.val">
         Активная
       </p>
       <div>

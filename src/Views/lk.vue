@@ -51,6 +51,7 @@ export default {
     const taskFlag = ref('main')
     const store = useStore()
     const getMainTask = () => {
+      taskFlag.value = 'main'
       store.commit('SetGloaderFlag', true)
       store.dispatch('apiGetList', { listName: store.getters.GetUserName })
         .then(response => {
@@ -62,7 +63,6 @@ export default {
     }
     onMounted(() => {
       getMainTask()
-      taskFlag.value = 'main'
     })
 
     const taskLists = ref([])
