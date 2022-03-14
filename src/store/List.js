@@ -41,6 +41,16 @@ const actions = {
       .then(response => {
         return response.data
       })
+  },
+  apiClearArchive: (context, data) => {
+    return axios({
+      method: 'DELETE',
+      url: '/api/deleteArchive',
+      data: data
+    })
+      .then(response => {
+        return response.data
+      })
   }
 }
 

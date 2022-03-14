@@ -37,9 +37,21 @@ const actions = {
       .then(response => {
         console.log(response)
         window.sessionStorage.setItem('userName', response.data.user)
+        window.sessionStorage.setItem('email', response.data.email)
         return response
       })
+  },
+  apiLogOutUser: (context, data) => {
+    return axios({
+      method: 'POST',
+      url: '/api/logOut',
+      data: data
+    })
+      .then(response => {
+        return response.data
+      })
   }
+
 }
 
 export default {

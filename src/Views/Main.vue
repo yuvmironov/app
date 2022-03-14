@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Main">
     <div id="testData">
       {{ userEmail }}
       {{ userName }}

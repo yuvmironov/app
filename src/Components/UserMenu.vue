@@ -25,10 +25,15 @@
 
 <script>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   name: 'user-menu',
   setup () {
+    const store = useStore()
+    const router = useRouter()
+
     const userMenuShow = ref(false)
     const showMenu = () => {
       userMenuShow.value = !userMenuShow.value
@@ -36,6 +41,15 @@ export default {
 
     const logOut = () => {
       console.log('Log Out')
+      store.commit('SetGloaderFlag', true)
+      store.dispatch('apiLogOutUser', { email: window.sessionStorage.getItem('email') })
+        .then(response => {
+          console.log(response)
+          router.push('/')
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
+        })
     }
     return {
       userMenuShow,

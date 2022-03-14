@@ -23,6 +23,10 @@
         @finishedTask="finishedTask"
       />
     </div>
+    <span v-if="taskFlag === 'archive'" class="Lk-NewTask" @click="clearArchive">
+      <span class="icon icon-x"/>
+      Очистить список архивных задач
+    </span>
     <form-create-task
       ref="createTaskForm"
       @newTask="newTaskSave"
@@ -185,6 +189,7 @@ export default {
           for (let i = 0; i < taskLists.value.length; i++) {
             if (taskLists.value[i]._id === id) {
               taskLists.value[i].archive.val = true
+              taskLists.value.splice(i, 1)
               break
             }
           }
@@ -245,6 +250,32 @@ export default {
           store.commit('SetGloaderFlag', false)
         })
     }
+    const clearArchive = () => {
+      store.commit('SetGloaderFlag', true)
+      store.dispatch('apiClearArchive', { listName: store.getters.GetUserName })
+        .then(response => {
+          store.commit('SetNotification', {
+            header: 'Успех',
+            body: response.message,
+            flag: true,
+            status: 'success',
+            duration: 5000
+          })
+          taskLists.value = []
+        })
+        .catch(() => {
+          store.commit('SetNotification', {
+            header: 'Ошибка',
+            body: 'Не удалось очистить архивные задачи. Попробуйте позже',
+            flag: true,
+            status: 'error',
+            duration: 5000
+          })
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
+        })
+    }
 
     const getArchivedTask = () => {
       taskFlag.value = 'archive'
@@ -271,7 +302,8 @@ export default {
       archivedTask,
       finishedTask,
       editData,
-      getArchivedTask
+      getArchivedTask,
+      clearArchive
     }
   }
 }

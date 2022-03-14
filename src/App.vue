@@ -1,6 +1,6 @@
 <template>
   <router-view name="header"/>
-  <router-view class="Main"/>
+  <router-view/>
   <router-view name="footer"/>
   <yuv-notification/>
   <yuv-global-loader/>
