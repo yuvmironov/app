@@ -102,6 +102,11 @@ export default {
     align-items center
     font-size 20px
     color var(--blue-dark)
+    transition 0.5s
+    &:hover
+      background-color var(--blue-dark)
+      color var(--white-default)
+      transition 0.5s
   &-LinkIcon
     margin-right 5px
 </style>

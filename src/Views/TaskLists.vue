@@ -15,6 +15,12 @@
       </div>
     </div>
     <div class="Lk-Tasks">
+      <p v-if="!taskLists.length && taskFlag === 'main'">
+        У вас еще нет активных задач.
+      </p>
+      <p v-if="!taskLists.length && taskFlag === 'archive'">
+        Архив задач пуст
+      </p>
       <one-task
         v-for="item in taskLists" :key="item._id"
         :task="item"
@@ -23,7 +29,7 @@
         @finishedTask="finishedTask"
       />
     </div>
-    <span v-if="taskFlag === 'archive'" class="Lk-NewTask" @click="clearArchive">
+    <span v-if="taskFlag === 'archive' && taskLists.length" class="Lk-NewTask" @click="clearArchive">
       <span class="icon icon-x"/>
       Очистить список архивных задач
     </span>
