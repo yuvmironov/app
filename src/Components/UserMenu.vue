@@ -12,6 +12,10 @@
             <span class="UserMenu-LinkIcon icon icon-list"/>
             <span class="UserMenu-LinkText">Список задач</span>
           </router-link>
+          <span class="UserMenu-Link" @click="logOut">
+            <span class="UserMenu-LinkIcon icon icon-log-out"/>
+            <span class="UserMenu-LinkText">Выход</span>
+          </span>
         </div>
         <div></div>
       </div>
@@ -30,9 +34,13 @@ export default {
       userMenuShow.value = !userMenuShow.value
     }
 
+    const logOut = () => {
+      console.log('Log Out')
+    }
     return {
       userMenuShow,
-      showMenu
+      showMenu,
+      logOut
     }
   }
 }
@@ -73,6 +81,7 @@ export default {
   &-MenuContent
     width 100%
   &-Link
+    cursor pointer
     width 100%
     display flex
     height 30px
