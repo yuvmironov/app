@@ -172,7 +172,7 @@ export default {
       })
         .then(result => {
           store.commit('SetUserName', result.data.user)
-          router.push('/lk')
+          router.push('/taskList')
         })
         .finally(() => {
           store.commit('SetGloaderFlag', false)

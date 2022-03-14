@@ -13,15 +13,21 @@ const routes = [
       header: HeaderComponent,
       default: () => import(/* webpackChunkName: "home" */ '../Views/Main'),
       footer: FooterComponent
+    },
+    meta: {
+      title: 'Вход'
     }
   },
   {
-    path: '/lk',
-    name: 'lk',
+    path: '/taskList',
+    name: 'taskList',
     components: {
       header: InnerHeader,
-      default: () => import(/* webpackChunkName: "lk" */ '../Views/lk'),
+      default: () => import(/* webpackChunkName: "taskList" */ '../Views/TaskLists'),
       footer: InnerFooter
+    },
+    meta: {
+      title: 'Задачи'
     }
   },
   {

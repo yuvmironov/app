@@ -1,16 +1,18 @@
 <template>
   <div class="Lk">
-    <div class="Lk-NewTask" @click="newTask">
-      <span class="icon icon-plus"/>
-      <span>Новая задача</span>
-    </div>
-    <div v-if="taskFlag === 'main'" class="Lk-NewTask" @click="getArchivedTask">
-      <span class="icon icon-inbox"/>
-      <span>Архивные задачи</span>
-    </div>
-    <div v-else class="Lk-NewTask" @click="getMainTask">
-      <span class="icon icon-inbox"/>
-      <span>Текущие задачи</span>
+    <div class="Lk-Actions">
+      <div class="Lk-NewTask" @click="newTask">
+        <span class="icon icon-plus"/>
+        <span>Новая задача</span>
+      </div>
+      <div v-if="taskFlag === 'main'" class="Lk-NewTask" @click="getArchivedTask">
+        <span class="icon icon-inbox"/>
+        <span>Архивные задачи</span>
+      </div>
+      <div v-else class="Lk-NewTask" @click="getMainTask">
+        <span class="icon icon-inbox"/>
+        <span>Текущие задачи</span>
+      </div>
     </div>
     <div class="Lk-Tasks">
       <one-task
@@ -282,6 +284,10 @@ export default {
   flex-direction column
   justify-content flex-start
   align-items flex-start
+  padding 20px
+  &-Actions
+    display flex
+    margin-bottom 10px
   &-Tasks
     display flex
     flex-wrap wrap

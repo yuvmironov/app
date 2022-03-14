@@ -1,6 +1,6 @@
 <template>
   <header class="Header">
-    header
+    <img class="Header-Logo" src="@/Assets/images/BigLogo.svg"/>
   </header>
 </template>
 
@@ -9,7 +9,3 @@ export default {
   name: 'header-component'
 }
 </script>
-
-<style lang="stylus">
-
-</style>
