@@ -1,5 +1,6 @@
 <template>
   <div class="UserMenu">
+    <span class="UserMenu-UserName">{{ $store.getters.GetUserName }}</span>
     <span class="UserMenu-Icon icon icon-user" @click="showMenu"/>
     <div
       class="UserMenu-Menu"
@@ -40,11 +41,9 @@ export default {
     }
 
     const logOut = () => {
-      console.log('Log Out')
       store.commit('SetGloaderFlag', true)
       store.dispatch('apiLogOutUser', { email: window.sessionStorage.getItem('email') })
-        .then(response => {
-          console.log(response)
+        .then(() => {
           router.push('/')
         })
         .finally(() => {
@@ -66,6 +65,8 @@ export default {
   display flex
   align-items center
   position relative
+  &-UserName
+    margin-right 5px
   &-Icon
     background-color var(--white-dark)
     font-size 30px

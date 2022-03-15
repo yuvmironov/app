@@ -7,11 +7,12 @@
       {{ userRepeatPassword }}
     </div>
     <div class="Main-Buttons">
-      <span @click="selectForm('login')">
+      <span @click="selectForm('login')" class="Main-ButtonsForm">
         <span class="icon icon-user-check"></span>
         Логин
       </span>
-      <span @click="selectForm('registration')">
+      <span class="Main-ButtonsForm">/</span>
+      <span @click="selectForm('registration')" class="Main-ButtonsForm">
         <span class="icon icon-user-plus"></span>
         Регистрация
       </span>
@@ -158,6 +159,15 @@ export default {
             resetUser()
             formFlag.value = 'login'
           })
+          .catch(err => {
+            store.commit('SetNotification', {
+              header: 'Ошибка',
+              body: err.message,
+              flag: true,
+              status: 'error',
+              duration: 5000
+            })
+          })
           .finally(() => {
             store.commit('SetGloaderFlag', false)
           })
@@ -210,6 +220,10 @@ export default {
   justify-content center
   align-items center
   flex-direction column
+  &-ButtonsForm
+    cursor pointer
+    &:not(:last-child)
+      margin-right 10px
   &-Registration, &-LoginForm
     padding 15px
   &-Registration, &-LoginForm

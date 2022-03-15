@@ -25,7 +25,7 @@ const actions = {
         return response.data
       })
       .catch((err) => {
-        console.log(err.response)
+        throw new Error(err.response.data.message)
       })
   },
   apiLoginUser: (context, data) => {
