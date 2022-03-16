@@ -11,7 +11,11 @@
         <div class="UserMenu-LinksBlock">
           <router-link to="/taskList" class="UserMenu-Link">
             <span class="UserMenu-LinkIcon icon icon-list"/>
-            <span class="UserMenu-LinkText">Список задач</span>
+            <span class="UserMenu-LinkText">Задачи</span>
+          </router-link>
+          <router-link to="/notesList" class="UserMenu-Link">
+            <span class="UserMenu-LinkIcon icon icon-clipboard"/>
+            <span class="UserMenu-LinkText">Заметки</span>
           </router-link>
           <span class="UserMenu-Link" @click="logOut">
             <span class="UserMenu-LinkIcon icon icon-log-out"/>

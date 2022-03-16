@@ -31,6 +31,18 @@ const routes = [
     }
   },
   {
+    path: '/notesList',
+    name: 'notesList',
+    components: {
+      header: InnerHeader,
+      default: () => import(/* webpackChunkName: "notesList" */ '../Views/NotesList'),
+      footer: InnerFooter
+    },
+    meta: {
+      title: 'Заметки'
+    }
+  },
+  {
     path: '/:catchAll(.*)',
     component: NotFound
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="Lk">
+    <h1>Задачи</h1>
     <div class="Lk-Actions">
       <div class="Lk-NewTask" @click="newTask">
         <span class="icon icon-plus"/>
