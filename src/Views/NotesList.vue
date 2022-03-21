@@ -50,6 +50,7 @@ export default {
         })
     })
     const saveAfterEdit = (data) => {
+      store.commit('SetGloaderFlag', true)
       store.dispatch('apiEditNote', { listName: store.getters.GetUserName, note: data.value })
         .then(response => {
           store.commit('SetNotification', {
@@ -65,6 +66,9 @@ export default {
               break
             }
           }
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
         })
     }
     const saveAfterCreate = (data) => {
@@ -94,7 +98,7 @@ export default {
     const SaveNote = (data) => {
       if (data.flagActions === 'edit') {
         saveAfterEdit(data.data)
-      } else if (data.flagActions === 'edit') {
+      } else if (data.flagActions === 'create') {
         saveAfterCreate(data.data)
       }
     }
