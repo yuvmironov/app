@@ -64,6 +64,9 @@ export default {
         dateCreate: dateCreate.value,
         dateFinish: dateFinished.value
       })
+      name.value = ''
+      dateFinished.value = ''
+      description.value = ''
       onClose()
     }
     const cancelCreate = () => {

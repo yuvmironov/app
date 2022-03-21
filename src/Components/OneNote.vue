@@ -1,8 +1,8 @@
 <template>
   <div class="OneNote" :style="{ backgroundColor : note.color }">
     <div class="OneNote-Actions">
-      <span class="icon icon-edit"/>
-      <span class="icon icon-trash"/>
+      <span class="icon icon-edit" @click="edit(note._id)"/>
+      <span class="icon icon-trash" @click="del(note._id)"/>
     </div>
     <p class="OneNote-Header">{{ note.name }}</p>
     <p class="OneNote-Body">
@@ -14,7 +14,19 @@
 <script>
 export default {
   name: 'one-note',
-  props: ['note']
+  props: ['note'],
+  setup (props, { emit }) {
+    const edit = (id) => {
+      emit('EditNote', id)
+    }
+    const del = (id) => {
+      emit('DelNote', id)
+    }
+    return {
+      edit,
+      del
+    }
+  }
 }
 </script>
 

@@ -12,6 +12,8 @@
       <one-note
         v-for="note in notes" :key="note._id"
         :note="note"
+        @EditNote = "EditNote"
+        @DelNote = "DelNote"
       />
     </div>
   </div>
@@ -70,13 +72,27 @@ export default {
     const SaveNote = (data) => {
       console.log(data)
     }
+    const EditNote = (id) => {
+      for (let i = 0; i < notes.value.length; i++) {
+        if (notes.value[i]._id === id) {
+          dataForForm.value = JSON.parse(JSON.stringify(notes.value[i]))
+          break
+        }
+      }
+      NoteForm.value.onOpen()
+    }
+    const DelNote = (id) => {
+      console.log('Удаление', id)
+    }
 
     return {
       CreateNote,
       notes,
       NoteForm,
       dataForForm,
-      SaveNote
+      SaveNote,
+      EditNote,
+      DelNote
     }
   }
 }
