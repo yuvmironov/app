@@ -1,6 +1,12 @@
 <template>
   <div class="NoteForm" v-if="flagNoteFormOpen">
     <div class="NoteForm-Content">
+      <select v-model="dataInForm.color">
+        <option>Синий</option>
+        <option>Красный</option>
+        <option>Желтый</option>
+        <option>Зеленый</option>
+      </select>
       <yuv-input
         id="nameNote"
         label="Заголовок"
@@ -37,7 +43,6 @@ export default {
     const onClose = () => {
       flagNoteFormOpen.value = false
     }
-
     const dataInForm = ref('')
     const save = () => {
       emit('SaveData', dataInForm)
