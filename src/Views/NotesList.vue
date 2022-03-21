@@ -27,7 +27,8 @@
 <script>
 import OneNote from '@/Components/OneNote'
 import NoteForm from '@/Components/NoteForm'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   name: 'notes-list',
@@ -36,41 +37,66 @@ export default {
     NoteForm
   },
   setup () {
-    // WARN: Удалить ниже
-    const notes = ref([
-      {
-        _id: 'asdasdasd',
-        color: 'green',
-        name: 'name 1',
-        body: 'body 1'
-      },
-      {
-        _id: 'asdasdasd1',
-        color: 'blue',
-        name: 'name 2',
-        body: 'body 2'
-      },
-      {
-        _id: 'asdasdasd2',
-        color: 'red',
-        name: 'name 3',
-        body: 'body 3'
-      }
-    ])
+    const store = useStore()
+    const notes = ref('')
+    onMounted(() => {
+      store.commit('SetGloaderFlag', true)
+      store.dispatch('apiGetNotes', { listName: store.getters.GetUserName })
+        .then(response => {
+          notes.value = response.payload
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
+        })
+    })
+    const saveAfterEdit = (data) => {
+      store.dispatch('apiEditNote', { listName: store.getters.GetUserName, note: data.value })
+        .then(response => {
+          store.commit('SetNotification', {
+            header: 'Успех',
+            body: response.payload,
+            flag: true,
+            status: 'success',
+            duration: 5000
+          })
+          for (let i = 0; i < notes.value.length; i++) {
+            if (notes.value[i]._id === data.value._id) {
+              notes.value[i] = data.value
+              break
+            }
+          }
+        })
+    }
+    const saveAfterCreate = (data) => {
+      console.log(data)
+    }
 
     const NoteForm = ref(null)
     const dataForForm = ref('')
     const CreateNote = () => {
       console.log('Создать заметку')
       dataForForm.value = {
-        color: '',
-        name: '',
-        body: ''
+        color: {
+          type: 'String',
+          val: ''
+        },
+        name: {
+          type: 'String',
+          val: ''
+        },
+        body: {
+          type: 'String',
+          val: ''
+        }
       }
-      NoteForm.value.onOpen()
+      NoteForm.value.onOpen('create')
     }
     const SaveNote = (data) => {
-      console.log(data)
+      if (data.flagActions === 'edit') {
+        saveAfterEdit(data.data)
+      } else if (data.flagActions === 'edit') {
+        saveAfterCreate(data.data)
+      }
     }
     const EditNote = (id) => {
       for (let i = 0; i < notes.value.length; i++) {
@@ -79,8 +105,9 @@ export default {
           break
         }
       }
-      NoteForm.value.onOpen()
+      NoteForm.value.onOpen('edit')
     }
+
     const DelNote = (id) => {
       console.log('Удаление', id)
     }

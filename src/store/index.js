@@ -3,6 +3,7 @@ import User from '@/Store/User'
 import Notification from 'yuv-components/src/store/Notification'
 import GlobalLoader from 'yuv-components/src/store/GlobalLoader'
 import List from '@/Store/List'
+import Notes from '@/Store/Notes'
 
 export default createStore({
   state: {
@@ -20,6 +21,7 @@ export default createStore({
     User,
     Notification,
     GlobalLoader,
-    List
+    List,
+    Notes
   }
 })

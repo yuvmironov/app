@@ -1,12 +1,12 @@
 <template>
-  <div class="OneNote" :style="{ backgroundColor : note.color }">
+  <div class="OneNote" :style="{ backgroundColor : note.color.val }">
     <div class="OneNote-Actions">
       <span class="icon icon-edit" @click="edit(note._id)"/>
       <span class="icon icon-trash" @click="del(note._id)"/>
     </div>
-    <p class="OneNote-Header">{{ note.name }}</p>
+    <p class="OneNote-Header">{{ note.name.val }}</p>
     <p class="OneNote-Body">
-      {{ note.body }}
+      {{ note.body.val }}
     </p>
   </div>
 </template>
