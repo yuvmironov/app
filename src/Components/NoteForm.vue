@@ -42,11 +42,14 @@
 
 <script>
 import { ref, watch } from 'vue'
+import { useStore } from 'vuex'
+
 let flagAction = ''
 export default {
   name: 'note-form',
   props: ['data'],
   setup (props, { emit }) {
+    const store = useStore()
     const colors = [
       {
         id: '#ff8080',
@@ -72,8 +75,18 @@ export default {
     }
     const dataInForm = ref('')
     const save = () => {
-      emit('SaveData', { data: dataInForm, flagActions: flagAction })
-      onClose()
+      if (dataInForm.value.body.val || dataInForm.value.name.val) {
+        emit('SaveData', { data: dataInForm, flagActions: flagAction })
+        onClose()
+      } else {
+        store.commit('SetNotification', {
+          header: 'Ошибка',
+          body: 'Заполнены не все поля',
+          flag: true,
+          status: 'error',
+          duration: 5000
+        })
+      }
     }
     const cancel = () => {
       dataInForm.value = ''

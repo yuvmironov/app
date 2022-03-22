@@ -8,13 +8,16 @@
         :fun="CreateNote"
       />
     </div>
-    <div class="NotesList-Notes">
+    <div class="NotesList-Notes" v-if="notes.length">
       <one-note
         v-for="note in notes" :key="note._id"
         :note="note"
         @EditNote = "EditNote"
         @DelNote = "DelNote"
       />
+    </div>
+    <div class="NotesList-Notes" v-else>
+      У вас нет заметок. Нажмите "Создать заметку" что бы добавить новую заметку
     </div>
   </div>
   <note-form
@@ -166,6 +169,7 @@ export default {
   padding 20px
   &-Notes
     display flex
+    flex-wrap wrap
   &-Buttons
     margin-bottom 10px
 </style>

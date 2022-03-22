@@ -1,8 +1,8 @@
 <template>
   <div class="OneNote" :style="{ backgroundColor : note.color.val }">
     <div class="OneNote-Actions">
-      <span class="icon icon-edit" @click="edit(note._id)"/>
-      <span class="icon icon-trash" @click="del(note._id)"/>
+      <span class="OneNote-Button icon icon-edit" @click="edit(note._id)"/>
+      <span class="OneNote-Button icon icon-trash" @click="del(note._id)"/>
     </div>
     <p class="OneNote-Header">{{ note.name.val }}</p>
     <p class="OneNote-Body">
@@ -44,4 +44,13 @@ export default {
     justify-content flex-end
     border-bottom 1px solid var(--black-light)
     padding-bottom 4px
+  &-Header
+    font-style italic
+    margin-bottom 5px
+    font-size 14px
+  &-Button
+    font-size 20px
+    cursor pointer
+    &:not(:last-child)
+      margin-right 5px
 </style>
