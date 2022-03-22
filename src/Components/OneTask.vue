@@ -7,7 +7,7 @@
       <p class="OneTask-Finished" v-if="task.archive.val">
         Архивная
       </p>
-      <p v-if="!task.archive.val && !task.finish.val">
+      <p class="OneTask-Finished" v-if="!task.archive.val && !task.finish.val">
         Активная
       </p>
       <div>
@@ -17,19 +17,19 @@
       </div>
     </div>
     <p class="OneTask-Name">
-      <span class="OneTask-NameHead">Название: </span>
+      <span class="OneTask-NameHead"><b>Название</b>: </span>
       <span class="OneTask-NameValue">{{ task.nameTask.val }}</span>
     </p>
     <p class="OneTask-Description">
-      <span class="OneTask-NameHead">Описание: </span>
+      <span class="OneTask-NameHead"><b>Описание</b>: </span>
       <span class="OneTask-NameValue">{{ task.description.val }}</span>
     </p>
     <p class="OneTask-DateCreate">
-      <span class="OneTask-NameHead">Дата создания: </span>
+      <span class="OneTask-NameHead"><b>Дата создания</b>: </span>
       {{ FormattingDate(task.dateCreate.val) }}
     </p>
     <p class="OneTask-DateFinish">
-      <span class="OneTask-NameHead">Дата окончания: </span>
+      <span class="OneTask-NameHead"><b>Дата окончания</b>: </span>
       {{ FormattingDate(task.dateFinish.val) }}
     </p>
   </div>
@@ -89,18 +89,27 @@ export default {
   border-radius 5px
   padding 10px
   width 300px
+  &-Finished
+    font-style italic
   &__Finished
     background-color var(--white-darker)
   &__Time
     background-color var(--red-light)
   &__InTime
     background-color var(--green-light)
+  &-Name, &-Description, &-DateCreate
+    padding-bottom 10px
   &-ActionsButtons
     display flex
     justify-content space-between
     align-items center
     border-bottom 1px solid var(--black-light)
     margin-bottom 4px
+    padding-bottom 5px
+  &-ActionButton
+    font-size 20px
+    &:not(:last-child)
+      margin-right 5px
   &-ActionButton
     cursor pointer
 </style>
