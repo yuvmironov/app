@@ -21,6 +21,17 @@ const actions = {
       .then(response => {
         return response.data
       })
+  },
+  apiNewNote: (context, data) => {
+    console.log('Создание')
+    return axios({
+      method: 'POST',
+      url: '/api/createNote',
+      data: data
+    })
+      .then(response => {
+        return response.data
+      })
   }
 }
 

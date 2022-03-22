@@ -72,7 +72,14 @@ export default {
         })
     }
     const saveAfterCreate = (data) => {
-      console.log(data)
+      store.commit('SetGloaderFlag', true)
+      store.dispatch('apiNewNote', { listName: store.getters.GetUserName, note: data.value })
+        .then(response => {
+          notes.value.push(response.payload[0])
+        })
+        .finally(() => {
+          store.commit('SetGloaderFlag', false)
+        })
     }
 
     const NoteForm = ref(null)
