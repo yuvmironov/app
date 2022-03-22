@@ -5,9 +5,9 @@
       <span class="OneNote-Button icon icon-trash" @click="del(note._id)"/>
     </div>
     <p class="OneNote-Header">{{ note.name.val }}</p>
-    <p class="OneNote-Body">
+    <pre class="OneNote-Body">
       {{ note.body.val }}
-    </p>
+    </pre>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   margin 5px
   padding 5px
   border-radius 5px
-  width 200px
+  min-width 200px
   height auto
   background-color var(--white-default)
   box-shadow 0 0 4px var(--blak-transparent)

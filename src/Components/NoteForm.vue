@@ -19,7 +19,7 @@
           label="Заголовок"
           v-model="dataInForm.name.val"
         />
-        <yuv-input
+        <yuv-textarea
           class="NoteForm-Input"
           id="bodyNote"
           label="Заметка"
