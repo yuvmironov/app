@@ -32,6 +32,17 @@ const actions = {
       .then(response => {
         return response.data
       })
+  },
+  apiDeleteNote: (context, data) => {
+    console.log('Удаление заметки')
+    return axios({
+      method: 'DELETE',
+      url: '/api/deleteNote',
+      data: data
+    })
+      .then(response => {
+        return response.data
+      })
   }
 }
 
