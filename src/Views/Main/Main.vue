@@ -60,7 +60,7 @@
         type="text"
         v-model="userName"
         id="name"
-        label="Ваше имя"
+        label="Ваш логин (англ)"
       />
       <yuv-input
         class="Main-Input"
@@ -81,7 +81,7 @@
           name="Регистрация"
           left-icon="user-plus"
           type="base"
-          :fun="registration"
+          :fun="registrationUser"
         />
         <yuv-button
           name="Очистить"
@@ -96,99 +96,21 @@
 
 <script>
 import { ref } from 'vue'
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
+import { ChangeForm } from './ChangeForm'
+import { Login } from './Login'
+import { Registration } from './Registration'
 
 export default {
   name: 'Main',
   setup () {
-    const store = useStore()
-    const router = useRouter()
-
-    const formFlag = ref('login')
-    const selectForm = (data) => {
-      resetUser()
-      formFlag.value = data
-    }
-
     const userEmail = ref('')
     const userName = ref('')
     const userPassword = ref('')
     const userRepeatPassword = ref('')
-    const resetUser = () => {
-      userEmail.value = ''
-      userName.value = ''
-      userPassword.value = ''
-      userRepeatPassword.value = ''
-    }
 
-    const registration = () => {
-      const formRegistration = document.querySelector('.Main-Registration')
-      let flag = false
-      Array.from(formRegistration.children).forEach(item => {
-        Array.from(item.children).forEach(element => {
-          if (element.classList.contains('YuvInput-Input__Error')) {
-            flag = true
-          }
-        })
-      })
-      if (flag) {
-        store.commit('SetNotification', {
-          header: 'Ошибка ввода данных',
-          body: 'Не все поля ввода заполнены корректно',
-          flag: true,
-          status: 'error',
-          duration: 5000
-        })
-      } else {
-        store.commit('SetGloaderFlag', true)
-        store.dispatch('registrationUser', {
-          email: userEmail.value,
-          login: userName.value,
-          password: userPassword.value,
-          repeatPassword: userRepeatPassword.value
-        })
-          .then(response => {
-            store.commit('SetNotification', {
-              header: 'Успешно',
-              body: response.message,
-              flag: true,
-              status: 'success',
-              duration: 5000
-            })
-            resetUser()
-            formFlag.value = 'login'
-          })
-          .catch(err => {
-            store.commit('SetNotification', {
-              header: 'Ошибка',
-              body: err.message,
-              flag: true,
-              status: 'error',
-              duration: 5000
-            })
-          })
-          .finally(() => {
-            store.commit('SetGloaderFlag', false)
-          })
-      }
-    }
-
-    const loginUser = () => {
-      store.commit('SetGloaderFlag', true)
-      store.dispatch('apiLoginUser', {
-        email: userEmail.value,
-        password: userPassword.value
-      })
-        .then(result => {
-          store.commit('SetUserName', result.data.user)
-          router.push('/taskList')
-        })
-        .finally(() => {
-          store.commit('SetGloaderFlag', false)
-        })
-    }
-
+    const { formFlag, selectForm, resetUser } = ChangeForm(userEmail, userName, userPassword, userRepeatPassword)
+    const { loginUser } = Login(userEmail, userPassword)
+    const { registrationUser } = Registration(userEmail, userName, userPassword, userRepeatPassword, resetUser, formFlag)
     return {
       formFlag,
       selectForm,
@@ -199,7 +121,7 @@ export default {
       loginUser,
       resetUser,
 
-      registration
+      registrationUser
     }
   }
 }

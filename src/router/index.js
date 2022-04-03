@@ -12,7 +12,7 @@ const routes = [
     name: 'Main',
     components: {
       header: HeaderComponent,
-      default: () => import(/* webpackChunkName: "home" */ '../Views/Main'),
+      default: () => import(/* webpackChunkName: "home" */ '../Views/Main/Main'),
       footer: FooterComponent
     },
     meta: {
