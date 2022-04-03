@@ -7,6 +7,9 @@ import 'yuv-components/src/Styles/ResetStyle.styl'
 import 'yuv-components/src/Styles/Fonts.styl'
 import Components from 'yuv-components/src/components'
 import FormCreateTask from '@/Components/FormCreateTask'
+
+import Editor from '@tinymce/tinymce-vue'
+
 const app = createApp(App)
 
 for (const key in Components) {
@@ -16,5 +19,6 @@ for (const key in Components) {
 app
   .use(store)
   .use(router)
+  .component('Editor', Editor)
   .component('FormCreateTask', FormCreateTask)
   .mount('#app')

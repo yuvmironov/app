@@ -4,6 +4,7 @@ import FooterComponent from '@/Components/FooterComponent'
 import InnerHeader from '@/Components/InnerHeader'
 import InnerFooter from '@/Components/InnerFooter'
 import NotFound from '@/Views/404'
+import OneMailing from '@/Views/OneMailing'
 
 const routes = [
   {
@@ -23,7 +24,7 @@ const routes = [
     name: 'taskList',
     components: {
       header: InnerHeader,
-      default: () => import(/* webpackChunkName: "taskList" */ '../Views/TaskLists'),
+      default: () => import(/* webpackChunkName: "taskList" */ '../Views/TaskList/TaskLists'),
       footer: InnerFooter
     },
     meta: {
@@ -41,6 +42,24 @@ const routes = [
     meta: {
       title: 'Заметки'
     }
+  },
+  {
+    path: '/mailing',
+    name: 'mailing',
+    components: {
+      header: InnerHeader,
+      default: () => import(/* webpackChunkName: "mailing" */ '../Views/Mailing'),
+      footer: InnerFooter
+    },
+    meta: {
+      title: 'Рассылки'
+    },
+    children: [
+      {
+        path: '/mailing/:id',
+        component: OneMailing
+      }
+    ]
   },
   {
     path: '/:catchAll(.*)',

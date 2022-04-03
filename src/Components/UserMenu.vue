@@ -17,6 +17,10 @@
             <span class="UserMenu-LinkIcon icon icon-clipboard"/>
             <span class="UserMenu-LinkText">Заметки</span>
           </router-link>
+          <router-link to="/mailing" class="UserMenu-Link">
+            <span class="UserMenu-LinkIcon icon icon-mail"/>
+            <span class="UserMenu-LinkText">Рассылки</span>
+          </router-link>
           <span class="UserMenu-Link" @click="logOut">
             <span class="UserMenu-LinkIcon icon icon-log-out"/>
             <span class="UserMenu-LinkText">Выход</span>

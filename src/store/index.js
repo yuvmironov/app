@@ -4,6 +4,7 @@ import Notification from 'yuv-components/src/store/Notification'
 import GlobalLoader from 'yuv-components/src/store/GlobalLoader'
 import List from '@/Store/List'
 import Notes from '@/Store/Notes'
+import Mailing from '@/Store/Mailing'
 
 export default createStore({
   state: {
@@ -22,6 +23,7 @@ export default createStore({
     Notification,
     GlobalLoader,
     List,
-    Notes
+    Notes,
+    Mailing
   }
 })

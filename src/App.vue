@@ -1,6 +1,6 @@
 <template>
   <router-view name="header"/>
-  <router-view/>
+  <router-view class="main"/>
   <router-view name="footer"/>
   <yuv-notification/>
   <yuv-global-loader/>
@@ -22,8 +22,10 @@ export default {
 <style lang="stylus">
 @import './Styles/global.styl'
 #app
-  height 100vh
+  min-height 100%
   display flex
   flex-direction column
   justify-content space-between
+.main
+  flex: 1 0 auto;
 </style>
