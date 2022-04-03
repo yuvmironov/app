@@ -36,7 +36,7 @@ const routes = [
     name: 'notesList',
     components: {
       header: InnerHeader,
-      default: () => import(/* webpackChunkName: "notesList" */ '../Views/NotesList'),
+      default: () => import(/* webpackChunkName: "notesList" */ '../Views/NoteList/NotesList'),
       footer: InnerFooter
     },
     meta: {
