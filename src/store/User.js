@@ -1,16 +1,21 @@
 import axios from 'axios'
 
 const state = {
-  userName: window.sessionStorage.getItem('userName') || ''
+  userName: window.sessionStorage.getItem('userName') || '',
+  userEmail: window.sessionStorage.getItem('email') || ''
 }
 
 const getters = {
-  GetUserName: state => state.userName
+  GetUserName: state => state.userName,
+  GetUserMail: state => state.userEmail
 }
 
 const mutations = {
   SetUserName: (state, data) => {
     state.userName = data
+  },
+  SetUserMail: (state, data) => {
+    state.userEmail = data
   }
 }
 

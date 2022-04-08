@@ -19,7 +19,7 @@
           </router-link>
           <router-link to="/mailing" class="UserMenu-Link">
             <span class="UserMenu-LinkIcon icon icon-mail"/>
-            <span class="UserMenu-LinkText">Рассылки</span>
+            <span class="UserMenu-LinkText">Отправка почты</span>
           </router-link>
           <span class="UserMenu-Link" @click="logOut">
             <span class="UserMenu-LinkIcon icon icon-log-out"/>

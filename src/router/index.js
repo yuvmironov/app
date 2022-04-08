@@ -4,7 +4,6 @@ import FooterComponent from '@/Components/FooterComponent'
 import InnerHeader from '@/Components/InnerHeader'
 import InnerFooter from '@/Components/InnerFooter'
 import NotFound from '@/Views/404'
-import OneMailing from '@/Views/OneMailing'
 
 const routes = [
   {
@@ -48,18 +47,12 @@ const routes = [
     name: 'mailing',
     components: {
       header: InnerHeader,
-      default: () => import(/* webpackChunkName: "mailing" */ '../Views/Mailing'),
+      default: () => import(/* webpackChunkName: "mailing" */ '../Views/Mail/Mail'),
       footer: InnerFooter
     },
     meta: {
-      title: 'Рассылки'
-    },
-    children: [
-      {
-        path: '/mailing/:id',
-        component: OneMailing
-      }
-    ]
+      title: 'Отправка почты'
+    }
   },
   {
     path: '/:catchAll(.*)',

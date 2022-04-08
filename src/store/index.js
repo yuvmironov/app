@@ -5,6 +5,7 @@ import GlobalLoader from 'yuv-components/src/store/GlobalLoader'
 import List from '@/Store/List'
 import Notes from '@/Store/Notes'
 import Mailing from '@/Store/Mailing'
+import Mail from '@/Store/Mail'
 
 export default createStore({
   state: {
@@ -24,6 +25,7 @@ export default createStore({
     GlobalLoader,
     List,
     Notes,
-    Mailing
+    Mailing,
+    Mail
   }
 })
