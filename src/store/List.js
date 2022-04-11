@@ -32,7 +32,6 @@ const actions = {
       })
   },
   apiEditTask: (context, data) => {
-    console.log(data)
     return axios({
       method: 'POST',
       url: '/api/editTask',
@@ -50,6 +49,16 @@ const actions = {
     })
       .then(response => {
         return response.data
+      })
+  },
+  apiGetStatuses: context => {
+    return axios({
+      method: 'GET',
+      url: '/api/tehc/taskStatuses'
+    })
+      .then(response => {
+        context.commit('SetStatuses', response.data.payload)
+        return true
       })
   }
 }

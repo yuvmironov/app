@@ -9,14 +9,19 @@ import Mail from '@/Store/Mail'
 
 export default createStore({
   state: {
-    token: ''
+    token: '',
+    statuses: {}
   },
   getters: {
-    GetToken: state => state.token
+    GetToken: state => state.token,
+    GetStatuses: state => state.statuses
   },
   mutations: {
     SetToken: (state, data) => {
       state.token = data
+    },
+    SetStatuses: (state, data) => {
+      state.statuses = data
     }
   },
   modules: {

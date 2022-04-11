@@ -28,6 +28,7 @@
         @editTask="editOneTask"
         @archivedTask="archivedOneTask"
         @finishedTask="finishedOneTask"
+        @ChangeStatus="changeStatusOneTask"
       />
     </div>
     <span v-if="taskFlag === 'archive' && taskLists.length" class="Lk-NewTask" @click="clearArchive">
@@ -64,7 +65,7 @@ export default {
   setup () {
     const { taskFlag, taskLists, getArchivedTask, getMainTask } = getTasks()
     const { createTaskForm, newTask, newTaskSave } = createTask(taskLists)
-    const { editTaskForm, editData, editOneTask, saveAfterEdit } = editTask(taskLists)
+    const { editTaskForm, editData, changeStatusOneTask, editOneTask, saveAfterEdit } = editTask(taskLists)
     const { archivedOneTask, clearArchive } = archivedTask(taskLists)
     const { finishedOneTask } = finishedTask(taskLists)
 
@@ -74,13 +75,14 @@ export default {
       editTaskForm,
       taskFlag,
       taskLists,
+      editData,
       newTask,
       newTaskSave,
       editOneTask,
       saveAfterEdit,
       archivedOneTask,
       finishedOneTask,
-      editData,
+      changeStatusOneTask,
       getArchivedTask,
       clearArchive
     }

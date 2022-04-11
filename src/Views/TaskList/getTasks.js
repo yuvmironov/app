@@ -12,9 +12,11 @@ export function getTasks () {
     store.dispatch('apiGetList', { listName: store.getters.GetUserName })
       .then(response => {
         taskLists.value = JSON.parse(JSON.stringify(response.payload))
-      })
-      .finally(() => {
-        store.commit('SetGloaderFlag', false)
+        store.dispatch('apiGetStatuses')
+          .then(() => {})
+          .finally(() => {
+            store.commit('SetGloaderFlag', false)
+          })
       })
   }
 

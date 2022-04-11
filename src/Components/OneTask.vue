@@ -17,6 +17,14 @@
       </div>
     </div>
     <p class="OneTask-Name">
+      <span class="OneTask-NameHead"><b>Статус</b>: </span>
+      <select @change="changeStatusesTask($event, task._id)" class="OneTask-StatusWork" :value="task.status.val">
+        <option v-for="(value, name) in $store.state.statuses" :key="name" :value="name">
+          {{ value }}
+        </option>
+      </select>
+    </p>
+    <p class="OneTask-Name">
       <span class="OneTask-NameHead"><b>Название</b>: </span>
       <span class="OneTask-NameValue">{{ task.nameTask.val }}</span>
     </p>
@@ -61,6 +69,9 @@ export default {
       }
     })
 
+    const changeStatusesTask = (event, taskId) => {
+      emit('ChangeStatus', { id: taskId, val: event.target.value })
+    }
     const editTask = id => {
       emit('editTask', id)
     }
@@ -71,6 +82,7 @@ export default {
       emit('finishedTask', id)
     }
     return {
+      changeStatusesTask,
       FormattingDate,
       editTask,
       archivedTask,
@@ -99,6 +111,8 @@ export default {
     background-color var(--green-light)
   &-Name, &-Description, &-DateCreate
     padding-bottom 10px
+  &-StatusWork
+    background-color inherit
   &-ActionsButtons
     display flex
     justify-content space-between
