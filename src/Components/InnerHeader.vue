@@ -1,6 +1,6 @@
 <template>
   <header class="Header">
-    <img class="Header-Logo" src="@/Assets/images/BigLogo.svg"/>
+    <img class="Header-Logo" src="@/Assets/images/BigLogo_I.svg"/>
     <UserMenu/>
   </header>
 </template>
