@@ -3,8 +3,9 @@
     <h1>Заметки</h1>
     <div class="NotesList-Buttons">
       <yuv-button
-        name="Создать заметку"
+        label="Создать заметку"
         left-icon="plus"
+        type="text"
         :fun="CreateNote"
       />
     </div>

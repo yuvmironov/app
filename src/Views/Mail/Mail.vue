@@ -39,12 +39,12 @@
     <div class="Mail-Buttons">
       <yuv-button
         class="Mail-Button"
-        name="Отправить"
+        label="Отправить"
         :fun="sendMail"
       />
       <yuv-button
         class="Mail-Button"
-        name="Очистить"
+        label="Очистить"
         :fun="clearMail"
       />
     </div>

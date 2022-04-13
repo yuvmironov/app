@@ -34,15 +34,13 @@
       />
       <div class="Main-LoginButtons">
         <yuv-button
-          name="Войти"
+          label="Войти"
           left-icon="user-check"
-          type="base"
           :fun="loginUser"
         />
         <yuv-button
-          name="Очистить"
+          label="Очистить"
           left-icon="trash"
-          type="base"
           :fun="resetUser"
         />
       </div>
@@ -78,13 +76,13 @@
       />
       <div class="Main-RegistrationButtons">
         <yuv-button
-          name="Регистрация"
+          label="Регистрация"
           left-icon="user-plus"
           type="base"
           :fun="registrationUser"
         />
         <yuv-button
-          name="Очистить"
+          label="Очистить"
           left-icon="trash"
           type="base"
           :fun="resetUser"

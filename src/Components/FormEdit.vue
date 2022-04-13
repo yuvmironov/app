@@ -23,11 +23,11 @@
       />
       <div class="FormEdit-Buttons">
         <yuv-button
-          name="Сохранить"
+          label="Сохранить"
           :fun="save"
         />
         <yuv-button
-          name="Отменить"
+          label="Отменить"
           :fun="cansel"
         />
       </div>

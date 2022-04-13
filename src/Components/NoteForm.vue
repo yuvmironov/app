@@ -27,11 +27,11 @@
         />
         <div class="NoteForm-Buttons">
           <yuv-button
-            name="Сохранить"
+            label="Сохранить"
             :fun="save"
           />
           <yuv-button
-            name="Отмена"
+            label="Отмена"
             :fun="cancel"
           />
         </div>
@@ -117,7 +117,7 @@ export default {
   bottom 0
   left 0
   right 0
-  background-color var(--blak-transparent)
+  background-color var(--background-transparent)
   display flex
   justify-content center
   align-items center
@@ -125,8 +125,8 @@ export default {
     display flex
     padding 10px
     border-radius 5px
-    background-color var(--white-default)
-    box-shadow 0 0 4px var(--blak-transparent)
+    background-color var(--background)
+    box-shadow 0 0 4px var(--background-transparent)
   &-Inputs
     width 400px
   &-ColorNote
@@ -136,7 +136,7 @@ export default {
     margin-right 10px
     writing-mode vertical-lr
     text-orientation upright
-    border 1px solid var(--blak-transparent)
+    border 1px solid var(--background-transparent)
   &-Header
     margin-bottom 10px
   &-Input

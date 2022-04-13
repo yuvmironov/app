@@ -25,11 +25,11 @@
       />
       <div class="FormCreate-Buttons">
         <yuv-button
-          name="Сохранить"
+          label="Сохранить"
           :fun="saveNewTask"
         />
         <yuv-button
-          name="Отмена"
+          label="Отмена"
           :fun="cancelCreate"
         />
       </div>
