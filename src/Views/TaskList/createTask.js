@@ -34,6 +34,10 @@ export function createTask (taskLists) {
       description: {
         type: 'textarea',
         val: data.description
+      },
+      status: {
+        type: 'select',
+        val: 'appointed'
       }
     }
     const sendingData = {
