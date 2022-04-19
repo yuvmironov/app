@@ -76,16 +76,16 @@ export default {
   &-UserName
     margin-right 5px
   &-Icon
-    background-color var(--white-dark)
+    background-color var(--background)
     font-size 30px
-    color var(--black-light)
+    color var(--on-backgroud)
     border-radius 50%
     padding 4px
     cursor pointer
   &-Menu
-    box-shadow 0 0 40px var(--black-light)
+    box-shadow 0 0 40px var(--outline)
     padding 10px
-    background-color var(--white-default)
+    background-color var(--background)
     position fixed
     top 0
     bottom 0
@@ -110,11 +110,11 @@ export default {
     height 30px
     align-items center
     font-size 20px
-    color var(--blue-dark)
+    color var(--on-backgroud)
     transition 0.5s
     &:hover
-      background-color var(--blue-dark)
-      color var(--white-default)
+      background-color var(--promary-container)
+      color var(--on-primary-container)
       transition 0.5s
   &-LinkIcon
     margin-right 5px

@@ -26,6 +26,8 @@ export default {
   display flex
   flex-direction column
   justify-content space-between
+  background-color var(--background)
+  color var(--on-backgroud)
 .main
   flex: 1 0 auto;
 </style>

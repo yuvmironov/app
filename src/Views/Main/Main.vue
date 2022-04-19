@@ -24,6 +24,7 @@
         v-model="userEmail"
         id="email"
         label="E-mail"
+        err-message="Поле должно быть Email"
       />
       <yuv-input
         class="Main-Input"
@@ -31,6 +32,7 @@
         v-model="userPassword"
         id="password"
         label="Пароль"
+        err-message="Пароль не соответствует требованиям"
       />
       <div class="Main-LoginButtons">
         <yuv-button
@@ -151,7 +153,4 @@ export default {
   &-RegistrationButtons, &-LoginButtons
     display flex
     justify-content space-between
-  &-Input
-    &:not(:last-child)
-      margin-bottom 10px
 </style>

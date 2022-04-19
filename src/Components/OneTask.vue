@@ -1,45 +1,41 @@
 <template>
   <div class="OneTask" :class="`OneTask__${status}`">
     <div class="OneTask-ActionsButtons">
-      <p class="OneTask-Finished" v-if="task.finish.val && !task.archive.val">
-        Завершена
-      </p>
-      <p class="OneTask-Finished" v-if="task.archive.val">
-        Архивная
-      </p>
-      <p class="OneTask-Finished" v-if="!task.archive.val && !task.finish.val">
-        Активная
-      </p>
+      <div class="OneTask-Header">
+        <select
+          @change="changeStatusesTask($event, task._id)"
+          class="OneTask-StatusWork"
+          :value="task.status.val"
+          :disabled="task.finish.val"
+        >
+          <option v-for="(value, name) in $store.state.statuses" :key="name" :value="name">
+            {{ value }}
+          </option>
+        </select>
+        <p class="OneTask-Name">
+          <span class="OneTask-NameValue"><b>{{ task.nameTask.val }}</b></span>
+        </p>
+      </div>
       <div>
         <span v-if="!task.finish.val" class="OneTask-ActionButton icon icon-edit" @click="editTask(task._id)"/>
         <span v-if="!task.archive.val && task.finish.val" class="OneTask-ActionButton icon icon-inbox" @click="archivedTask(task._id)"/>
         <span v-if="!task.finish.val" class="OneTask-ActionButton icon icon-check" @click="finishedTask(task._id)"/>
       </div>
     </div>
-    <p class="OneTask-Name">
-      <span class="OneTask-NameHead"><b>Статус</b>: </span>
-      <select @change="changeStatusesTask($event, task._id)" class="OneTask-StatusWork" :value="task.status.val">
-        <option v-for="(value, name) in $store.state.statuses" :key="name" :value="name">
-          {{ value }}
-        </option>
-      </select>
-    </p>
-    <p class="OneTask-Name">
-      <span class="OneTask-NameHead"><b>Название</b>: </span>
-      <span class="OneTask-NameValue">{{ task.nameTask.val }}</span>
-    </p>
     <p class="OneTask-Description">
       <span class="OneTask-NameHead"><b>Описание</b>: </span>
       <span class="OneTask-NameValue">{{ task.description.val }}</span>
     </p>
-    <p class="OneTask-DateCreate">
-      <span class="OneTask-NameHead"><b>Дата создания</b>: </span>
-      {{ FormattingDate(task.dateCreate.val) }}
-    </p>
-    <p class="OneTask-DateFinish">
-      <span class="OneTask-NameHead"><b>Дата окончания</b>: </span>
-      {{ FormattingDate(task.dateFinish.val) }}
-    </p>
+    <div class="OneTask-Dates">
+      <p class="OneTask-DateCreate">
+        <span class="OneTask-NameHead"><b>Дата создания</b>: </span>
+        {{ FormattingDate(task.dateCreate.val) }}
+      </p>
+      <p class="OneTask-DateFinish">
+        <span class="OneTask-NameHead"><b>Дата окончания</b>: </span>
+        {{ FormattingDate(task.dateFinish.val) }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -62,10 +58,18 @@ export default {
       if (props.task.finish.val) {
         return 'Finished'
       }
-      if (new Date(props.task.dateFinish.val) < new Date()) {
+      const finish = String(new Date(props.task.dateFinish.val).getDate()) +
+        String(new Date(props.task.dateFinish.val).getMonth()) +
+        String(new Date(props.task.dateFinish.val).getFullYear())
+      const now = String(new Date().getDate()) + String(new Date().getMonth()) + String(new Date().getFullYear())
+      console.log(props.task.nameTask.val)
+      console.log(finish, now, finish === now)
+      if (finish < now) {
         return 'Time'
-      } else {
+      } else if (finish > now) {
         return 'InTime'
+      } else {
+        return 'InNow'
       }
     })
 
@@ -97,27 +101,49 @@ export default {
 .OneTask
   margin 10px
   position relative
-  box-shadow 0 0 10px 1px var(--black-light)
+  box-shadow 0 0 10px 1px var(--outline)
   border-radius 5px
   padding 10px
-  width 300px
+  width 100%
+  &-Header
+    display flex
+    align-items baseline
+  &-StatusWork
+    margin-right 10px
+    background-color inherit
+  &-Dates
+    display flex
+  &-DateCreate
+    margin-right 10px
   &-Finished
     font-style italic
   &__Finished
-    background-color var(--white-darker)
+    background-color var(--secondary)
+    color var(--on-secondary)
+    & .OneTask-StatusWork
+      color var(--on-secondary)
   &__Time
-    background-color var(--red-light)
+    background-color var(--error)
+    color var(--on-error)
+    & .OneTask-StatusWork
+      color var(--on-error)
   &__InTime
-    background-color var(--green-light)
+    background-color var(--promary-container)
+    color var(--on-primary-container)
+    & .OneTask-StatusWork
+      color var(--on-primary-container)
+  &__InNow
+    background-color var(--tertiary-container)
+    color var(--on-tertiary-container)
+    & .OneTask-StatusWork
+      color var(--on-tertiary-container)
   &-Name, &-Description, &-DateCreate
     padding-bottom 10px
-  &-StatusWork
-    background-color inherit
   &-ActionsButtons
     display flex
     justify-content space-between
     align-items center
-    border-bottom 1px solid var(--black-light)
+    border-bottom 1px solid var(--outline)
     margin-bottom 4px
     padding-bottom 5px
   &-ActionButton

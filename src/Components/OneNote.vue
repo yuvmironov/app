@@ -1,13 +1,14 @@
 <template>
   <div class="OneNote" :style="{ backgroundColor : note.color.val }">
-    <div class="OneNote-Actions">
-      <span class="OneNote-Button icon icon-edit" @click="edit(note._id)"/>
-      <span class="OneNote-Button icon icon-trash" @click="del(note._id)"/>
+    <div class="OneNote-HeaderBlock">
+      <p class="OneNote-Header">{{ note.name.val }}</p>
+      <div class="OneNote-Actions">
+        <span class="OneNote-Button icon icon-edit" @click="edit(note._id)"/>
+        <span class="OneNote-Button icon icon-trash" @click="del(note._id)"/>
+      </div>
     </div>
-    <p class="OneNote-Header">{{ note.name.val }}</p>
-    <pre class="OneNote-Body">
-      {{ note.body.val }}
-    </pre>
+    <div class="OneNote-Body" v-html="note.body.val">
+    </div>
   </div>
 </template>
 
@@ -36,18 +37,23 @@ export default {
   padding 5px
   border-radius 5px
   min-width 200px
+  max-width 500px
   height auto
   background-color var(--white-default)
   box-shadow 0 0 4px var(--blak-transparent)
-  &-Actions
+  &-HeaderBlock
     display flex
-    justify-content flex-end
+    justify-content space-between
+    align-items center
     border-bottom 1px solid var(--black-light)
-    padding-bottom 4px
+    padding 4px 0
   &-Header
     font-style italic
-    margin-bottom 5px
     font-size 14px
+    margin-right 10px
+  &-Body
+    padding-top 10px
+    width 100%
   &-Button
     font-size 20px
     cursor pointer

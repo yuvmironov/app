@@ -3,10 +3,10 @@
     <div class="FormEdit-Content">
       <h2 class="FormEdit-Header">Редактирование задачи</h2>
       <yuv-input
-        class="FormEdit-Input"
         id="nameTask"
         label="Имя задачи"
         v-model="dataForForm.nameTask.val"
+        err-message="Не может быть пустым"
       />
       <yuv-input
         class="FormEdit-Input"
@@ -15,7 +15,7 @@
         label="Дата окончания"
         v-model="dataForForm.dateFinish.val"
       />
-      <yuv-input
+      <yuv-textarea
         class="FormEdit-Input"
         id="description"
         label="Описание"

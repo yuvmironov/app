@@ -1,6 +1,6 @@
 <template>
   <div class="Lk">
-    <h1>Задачи</h1>
+    <h1 class="HeaderPage">Задачи</h1>
     <div class="Lk-Actions">
       <div class="Lk-NewTask" @click="newTask">
         <span class="icon icon-plus"/>
@@ -92,7 +92,6 @@ export default {
 
 <style lang="stylus">
 .Lk
-  height 100vh
   display flex
   flex-direction column
   justify-content flex-start
@@ -102,8 +101,9 @@ export default {
     display flex
     margin-bottom 10px
   &-Tasks
+    width 100%
     display flex
-    flex-wrap wrap
+    flex-direction column
   &-NewTask
     cursor pointer
     padding-left 10px

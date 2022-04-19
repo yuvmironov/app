@@ -3,11 +3,11 @@
     <div class="FormCreate-Content">
       <h2 class="FormCreate-Header">Новая задача</h2>
       <yuv-input
-        class="FormEdit-Input"
         label="Название задачи"
         type="text"
         id="nameTask"
         v-model="name"
+        err-message="Не может быть пустым"
       />
       <yuv-input
         class="FormEdit-Input"
@@ -16,7 +16,7 @@
         type="date"
         v-model="dateFinished"
       />
-      <yuv-input
+      <yuv-textarea
         class="FormEdit-Input"
         id="description"
         label="Описание задачи"

@@ -19,11 +19,19 @@
           label="Заголовок"
           v-model="dataInForm.name.val"
         />
-        <yuv-textarea
+<!--        <yuv-textarea
           class="NoteForm-Input"
           id="bodyNote"
           label="Заметка"
           v-model="dataInForm.body.val"
+        />-->
+        <editor
+          api-key="iruikfet3r7sfm7pqjfnkn2io5ntkh89phqfpbgzkib6rl0i"
+          cloud-channel='5'
+          output-format="html"
+          :init="tinyInitConfig"
+          v-model="dataInForm.body.val"
+          :initial-value="dataInForm.body.val"
         />
         <div class="NoteForm-Buttons">
           <yuv-button
@@ -64,6 +72,16 @@ export default {
         name: 'Зеленый'
       }
     ]
+    const tinyInitConfig = ref({
+      width: '100%',
+      height: '400px',
+      resize: false,
+      menubar: false,
+      toolbar: `
+        bold italic`,
+      id: 'oneNoteEditor',
+      'model-events': 'change keydown blur focus paste'
+    })
     const flagNoteFormOpen = ref(false)
     const onOpen = (data) => {
       flagAction = data
@@ -102,6 +120,7 @@ export default {
       onOpen,
       onClose,
       dataInForm,
+      tinyInitConfig,
       save,
       cancel
     }
@@ -128,7 +147,7 @@ export default {
     background-color var(--background)
     box-shadow 0 0 4px var(--background-transparent)
   &-Inputs
-    width 400px
+    width 800px
   &-ColorNote
     text-align center
     width 40px
@@ -144,6 +163,7 @@ export default {
     &:not(:last-child)
       margin-bottom 10px
   &-Buttons
+    margin-top 10px
     display flex
     justify-content space-around
 </style>

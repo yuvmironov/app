@@ -64,7 +64,7 @@ export default {
 
 <style lang="stylus">
 .NotesList
-  height 100vh
+  height 100%
   padding 20px
   &-Notes
     display flex
