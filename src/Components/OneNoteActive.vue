@@ -4,23 +4,8 @@
       <yuv-input id="nameNote" v-model="nameNote" :disabled="true" label="Имя задачи"/>
       <yuv-select
         id="colorNote"
-        :disabled="true"
         label="Цвет"
-        :options="
-          [
-            {
-              id: '#ff8080',
-              name: 'Красный'
-            },
-            {
-              id: '#f2c94c',
-              name: 'Оранжевый'
-            },
-            {
-              id: '#27ae60',
-              name: 'Зеленый'
-            }
-          ]"
+        :options="colors"
           v-model="colorNote"
       />
       {{ bodyNote }}
@@ -33,13 +18,15 @@ import { ref, watch } from 'vue'
 
 export default {
   name: 'one-note-active',
-  props: ['note', 'flagShowNote'],
+  props: ['note', 'flagShowNote', 'colors'],
   setup (props, { emit }) {
     const bodyNote = ref('')
     const colorNote = ref('')
     const nameNote = ref('')
-    const onClose = () => {
-      emit('closeNoteWindow')
+    const onClose = (e) => {
+      if (e.target.classList.contains('OneNote')) {
+        emit('closeNoteWindow')
+      }
     }
     watch(() => props.note, newValue => {
       nameNote.value = newValue.name.val

@@ -4,6 +4,7 @@
     <p class="Notes-IconText">Заметки</p>
     <div class="Notes-List" v-show="flag">
       <div class="Notes-Buttons">
+        <yuv-icon-button class="Notes-ButtonPlus" :fun="addNote" icon="plus"/>
         <yuv-icon-button class="Notes-BackArrow" :fun="show" icon="arrow-right"/>
       </div>
       <p class="Notes-NoteLink"
@@ -16,6 +17,7 @@
       </p>
       <one-note-active
         :note="note"
+        :colors="noteColors"
         :flag-show-note="showOneNote"
         @closeNoteWindow="closeNoteWindow"
       />
@@ -45,6 +47,14 @@ export default {
       return store.getters.getNoteList
     })
 
+    const noteColors = computed(() => {
+      const res = []
+      for (const color in store.getters.getNoteColors) {
+        res.push(store.getters.getNoteColors[color])
+      }
+      return res
+    })
+
     const note = ref({})
     const getNotes = () => {
       return store.dispatch('apiGetNotes', { listName: store.getters.GetUserName })
@@ -67,13 +77,19 @@ export default {
       showOneNote.value = true
     }
 
+    const addNote = () => {
+      console.log('add note')
+    }
+
     return {
       flag,
       showOneNote,
       closeNoteWindow,
       notes,
       note,
+      noteColors,
       selectOneNote,
+      addNote,
       show
     }
   }
@@ -122,4 +138,6 @@ export default {
       margin-bottom 5px
   &-BackArrow
     margin-bottom 5px
+  &-ButtonPlus
+    margin-right 5px
 </style>
