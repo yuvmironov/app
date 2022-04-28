@@ -64,8 +64,8 @@ export default {
 
 <style lang="stylus">
 .NotesList
-  height 100%
   padding 20px
+  height 100%
   &-Notes
     display flex
     flex-wrap wrap

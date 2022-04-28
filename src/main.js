@@ -11,10 +11,11 @@ import FormCreateTask from '@/Components/FormCreateTask'
 
 import Editor from '@tinymce/tinymce-vue'
 axios.defaults.withCredentials = true
-if (process.env.NODE_ENV === 'prodaction') {
-  axios.defaults.baseURL = 'https://yuvmironov.herokuapp.com/'
-} else {
-  axios.defaults.baseURL = 'http://localhost:3000'
+// axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Credentials': true,
+  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
 }
 const app = createApp(App)
 

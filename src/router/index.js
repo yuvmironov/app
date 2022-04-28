@@ -3,6 +3,7 @@ import HeaderComponent from '@/Components/HeaderComponent'
 import FooterComponent from '@/Components/FooterComponent'
 import InnerHeader from '@/Components/InnerHeader'
 import InnerFooter from '@/Components/InnerFooter'
+import Notes from '@/Views/Notes/Notes'
 import NotFound from '@/Views/404'
 
 const routes = [
@@ -24,6 +25,7 @@ const routes = [
     components: {
       header: InnerHeader,
       default: () => import(/* webpackChunkName: "taskList" */ '../Views/TaskList/TaskLists'),
+      notes: Notes,
       footer: InnerFooter
     },
     meta: {

@@ -1,4 +1,22 @@
 import axios from 'axios'
+const state = {
+  noteList: {},
+  noteColors: {}
+}
+
+const getters = {
+  getNoteList: state => state.noteList,
+  getNoteColors: state => state.noteColors
+}
+
+const mutations = {
+  setNoteList: (state, data) => {
+    state.noteList = data
+  },
+  setNoteColors: (state, data) => {
+    state.noteColors = data
+  }
+}
 
 const actions = {
   apiGetNotes: (context, data) => {
@@ -8,7 +26,18 @@ const actions = {
       params: data
     })
       .then(response => {
-        return response.data
+        context.commit('setNoteList', response.data.payload)
+        return true
+      })
+  },
+  apiGetNoteColors: context => {
+    return axios({
+      method: 'GET',
+      url: '/api/getNoteColors'
+    })
+      .then(response => {
+        context.commit('setNoteColors', response.data.payload)
+        return true
       })
   },
   apiEditNote: (context, data) => {
@@ -47,5 +76,8 @@ const actions = {
 }
 
 export default {
+  state,
+  getters,
+  mutations,
   actions
 }
