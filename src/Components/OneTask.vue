@@ -58,15 +58,9 @@ export default {
       if (props.task.finish.val) {
         return 'Finished'
       }
-      const finish = String(new Date(props.task.dateFinish.val).getDate()) +
-        String(new Date(props.task.dateFinish.val).getMonth()) +
-        String(new Date(props.task.dateFinish.val).getFullYear())
-      const now = String(new Date().getDate()) + String(new Date().getMonth()) + String(new Date().getFullYear())
-      console.log(props.task.nameTask.val)
-      console.log(finish, now, finish === now)
-      if (finish < now) {
+      if (new Date(props.task.dateFinish.val).getTime() < new Date().getTime()) {
         return 'Time'
-      } else if (finish > now) {
+      } else if (new Date(props.task.dateFinish.val).getTime() > new Date().getTime()) {
         return 'InTime'
       } else {
         return 'InNow'
