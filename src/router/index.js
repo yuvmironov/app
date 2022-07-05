@@ -33,18 +33,6 @@ const routes = [
     }
   },
   {
-    path: '/notesList',
-    name: 'notesList',
-    components: {
-      header: InnerHeader,
-      default: () => import(/* webpackChunkName: "notesList" */ '../Views/NoteList/NotesList'),
-      footer: InnerFooter
-    },
-    meta: {
-      title: 'Заметки'
-    }
-  },
-  {
     path: '/mailing',
     name: 'mailing',
     components: {
