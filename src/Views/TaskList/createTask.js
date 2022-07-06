@@ -19,6 +19,10 @@ export function createTask (taskLists) {
         type: 'date',
         val: new Date(data.dateCreate)
       },
+      dateStart: {
+        type: 'date',
+        val: ''
+      },
       dateFinish: {
         type: 'date',
         val: new Date(data.dateFinish)
@@ -38,6 +42,18 @@ export function createTask (taskLists) {
       status: {
         type: 'select',
         val: 'appointed'
+      },
+      group: {
+        type: 'text',
+        val: 'new'
+      },
+      taskNumber: {
+        type: 'number',
+        val: 0
+      },
+      priority: {
+        type: 'text',
+        val: 'low'
       }
     }
     const sendingData = {

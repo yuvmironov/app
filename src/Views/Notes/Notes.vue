@@ -35,7 +35,7 @@
 <script>
 import { ref, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
-import OneNoteActive from '@/Components/OneNoteActive'
+import OneNoteActive from '@/Components/OneNote'
 
 export default {
   components: { OneNoteActive },
