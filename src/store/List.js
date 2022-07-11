@@ -60,6 +60,15 @@ const actions = {
         context.commit('SetStatuses', response.data.payload)
         return true
       })
+  },
+  apiGetTaskPriority: () => {
+    return axios({
+      method: 'GET',
+      url: '/api/getTaskPriority'
+    })
+      .then(response => {
+        return response.data.payload
+      })
   }
 }
 

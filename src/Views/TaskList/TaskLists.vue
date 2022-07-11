@@ -1,6 +1,7 @@
 <template>
   <div class="Lk">
     <h1 class="HeaderPage">Задачи</h1>
+    {{ taskPriority }}
     <div class="Lk-Actions">
       <div class="Lk-NewTask" @click="newTask">
         <span class="icon icon-plus"/>
@@ -50,6 +51,7 @@
 <script>
 import OneTask from '@/Components/OneTask'
 import FormEdit from '@/Components/FormEdit'
+import { taskTehnical } from './taskTehnical'
 import { createTask } from './createTask'
 import { getTasks } from './getTasks'
 import { editTask } from './editTask'
@@ -63,6 +65,7 @@ export default {
     FormEdit
   },
   setup () {
+    const { taskPriority } = taskTehnical()
     const { taskFlag, taskLists, getArchivedTask, getMainTask } = getTasks()
     const { createTaskForm, newTask, newTaskSave } = createTask(taskLists)
     const { editTaskForm, editData, changeStatusOneTask, editOneTask, saveAfterEdit } = editTask(taskLists)
@@ -70,6 +73,7 @@ export default {
     const { finishedOneTask } = finishedTask(taskLists)
 
     return {
+      taskPriority,
       getMainTask,
       createTaskForm,
       editTaskForm,
